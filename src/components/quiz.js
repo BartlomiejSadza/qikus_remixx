@@ -2,17 +2,13 @@ import React, { useState, useEffect } from "react";
 import he from "he";
 
 export default function Quiz(props) {
-  const [questions, setQuestions] = useState([]);
 
-  useEffect(() => {
-    props.fetchQuestions().then((data) => setQuestions(data));
-  }, []);
 
   return (
     <div>
       <h1>Quiz</h1>
-      {questions &&
-        questions.map((question) => <p>{he.decode(question.question)}</p>)}
+      <p>{props.question}</p>
+        
     </div>
   );
 }

@@ -41,6 +41,7 @@
   }
 }
 
+/* Button styling */
 .hello button {
   background-color: #4D5B9E;
   color: white;
@@ -51,19 +52,41 @@
   cursor: pointer;
   font-size: 1rem;
   margin-top: 20px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
+
+.hello button:hover {
+  background-color: #6b77c5;
+}
+
 .hello button:active {
   background-color: #5461a0;
   box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.3);
 }
 
-.quiks > ul {
+.quiks {
+  width: fit-content;
+  max-width: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.quiks p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 15px 20px;
+  width: fit-content;
+}
+
+.quiks ul {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-top: 20px;
-  padding: auto;
+  margin: 10px 0;
 }
 
 .quiks .answer {
@@ -71,5 +94,20 @@
   margin: 0 10px;
   border-radius: 15px;
   border: 1px solid #4D5B9E;
-  padding: 5px 15px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+
+.quiks .answer:hover {
+  background-color:  #939fea;
+  color: white;
+  font-weight: bolder;
+}
+
+
+.quiks .answer:active {
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.2);
+  border: none;
 }

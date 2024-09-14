@@ -100,7 +100,11 @@
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-
+.quiks .answerClicked {
+  background-color: #4D5B9E;
+  color: white;
+  font-weight: bolder;
+}
 
 .quiks .answer:hover {
   background-color:  #939fea;

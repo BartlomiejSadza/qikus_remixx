@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import he from "he";
 
 export default function Quiz(props) {
+  const [clicked, setClicked] = useState(false);
+  const [correct, setCorrect] = useState([]);
+  const [incorrect, setIncorrect] = useState(false);
+
   //array of answers
   const answers = [props.question.correct_answer];
   props.question.incorrect_answers.forEach((answer) => {
@@ -13,14 +17,24 @@ export default function Quiz(props) {
   };
   randomizeAnswers(answers);
 
+  useEffect(() => {
+    setCorrect(props.question.correct_answer);
+  }, []);
+  // set the button clicked or not clicked
+  const handleClick = (e) => {
+    setClicked(true);
+  };
+  console.log(correct);
+
   return (
     <div className="quiks">
       <p style={{ whiteSpace: "wrap" }}>{he.decode(props.question.question)}</p>
       <ul>
         {answers.map((answer, index) => (
-          <div className="answer" key={index}>
+          <div onClick={handleClick} className="answer" key={index}>
             {answer}
           </div>
+
         ))}
       </ul>
     </div>

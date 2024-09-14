@@ -56,3 +56,20 @@
   background-color: #5461a0;
   box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.3);
 }
+
+.quiks > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 20px;
+  padding: auto;
+}
+
+.quiks .answer {
+  font-size: 0.8rem;
+  margin: 0 10px;
+  border-radius: 15px;
+  border: 1px solid #4D5B9E;
+  padding: 5px 15px;
+}

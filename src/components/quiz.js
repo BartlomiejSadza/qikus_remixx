@@ -1,14 +1,28 @@
 import React, { useState, useEffect } from "react";
 import he from "he";
 
-
-
 export default function Quiz(props) {
-
+  //array of answers
+  const answers = [props.question.correct_answer];
+  props.question.incorrect_answers.forEach((answer) => {
+    answers.push(answer);
+  });
+  // randomize answers
+  const randomizeAnswers = function (answers) {
+    return answers.sort(() => Math.random() - 0.5);
+  };
+  randomizeAnswers(answers);
 
   return (
-    <div>
-      <p>{props.question}</p>
+    <div className="quiks">
+      <p>{he.decode(props.question.question)}</p>
+      <ul>
+        {answers.map((answer, index) => (
+          <div className="answer" key={index}>
+            {answer}
+          </div>
+        ))}
+      </ul>
     </div>
   );
 }

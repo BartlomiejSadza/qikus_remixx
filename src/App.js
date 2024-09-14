@@ -3,9 +3,11 @@ import React, { useState, useEffect } from "react";
 import Hello from "./components/hello";
 import Quiz from "./components/quiz";
 import he from "he";
+import { nanoid } from "nanoid";
 
 function App() {
   const [questions, setQuestions] = useState([]);
+  const [isTrue, setIsTrue] = useState(false);
 
   const fetchQuestions = async function fetchData() {
     try {
@@ -21,15 +23,16 @@ function App() {
 
   useEffect(() => {
     fetchQuestions().then((data) => setQuestions(data));
-  }, []);
+  }, [isTrue]);
 
   return (
     <div className="App">
       <header className="App-header">
         {/* <Hello /> */}
+        <button onClick={() => setIsTrue(!isTrue)}>Fetch Questions</button>
         {questions &&
-          questions.map((question, key) => (
-            <Quiz key={key} question={he.decode(question.question)} />
+          questions.map((question, index) => (
+            <Quiz key={index} question={question} />
           ))}
       </header>
     </div>

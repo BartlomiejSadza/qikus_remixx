@@ -15,7 +15,7 @@ export default function Quiz(props) {
 
   return (
     <div className="quiks">
-      <p>{he.decode(props.question.question)}</p>
+      <p style={{ whiteSpace: "wrap" }}>{he.decode(props.question.question)}</p>
       <ul>
         {answers.map((answer, index) => (
           <div className="answer" key={index}>

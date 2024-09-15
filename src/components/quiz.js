@@ -3,7 +3,7 @@ import he from "he";
 
 export default function Quiz(props) {
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null); // Track clicked answer index
-  const { question, index, myAnswer, setMyAnswer } = props;
+  const { question, index, setMyAnswer } = props;
   const { correct_answer, incorrect_answers } = question;
 
   const [shuffledAnswers, setShuffledAnswers] = useState([]);

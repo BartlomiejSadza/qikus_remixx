@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Hello from "./components/hello";
 import Quiz from "./components/quiz";
 
@@ -43,12 +43,12 @@ function App() {
     questions: [],
   };
 
-  const resetGame = () => (
-    setMyAnswer(initialState.myAnswer),
-    setQuestions(initialState.questions),
-    setIsHello(initialState.isHello),
-    setCheckAnswers(initialState.checkAnswers)
-  );
+  const resetGame = () => {
+    setMyAnswer(initialState.myAnswer);
+    setQuestions(initialState.questions);
+    setIsHello(initialState.isHello);
+    setCheckAnswers(initialState.checkAnswers);
+  };
 
   // count the number of correct answers
   const countCorrectAnswers = Object.values(myAnswer).filter(

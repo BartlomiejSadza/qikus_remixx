@@ -24,7 +24,6 @@ export default function Quiz(props) {
         isCorrect: answer === correct_answer,
       },
     }));
-    console.log("myAnswer:", myAnswer);
   };
 
   return (
@@ -45,7 +44,7 @@ export default function Quiz(props) {
                   : "answerElse"
               }`}
             >
-              {answer}
+              {he.decode(answer)}
             </div>
           ) : (
             <div

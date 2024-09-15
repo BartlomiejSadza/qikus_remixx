@@ -1,11 +1,12 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import Hello from "./components/hello";
 import Quiz from "./components/quiz";
 
 function App() {
   const [questions, setQuestions] = useState([]);
   const [checkAnswers, setCheckAnswers] = useState(false);
-  const [isTrue, setIsTrue] = useState(false);
+  const [isHello, setIsHello] = useState(true);
   const [myAnswer, setMyAnswer] = useState({
     0: { answer: "", isCorrect: false },
     1: { answer: "", isCorrect: false },
@@ -21,14 +22,13 @@ function App() {
       );
       const data = await response.json();
       setQuestions(data.results || []); // Ensure it's an array
+      console.log("Content fetched!");
     } catch (error) {
       console.error("Error fetching questions:", error);
     }
   };
 
-  useEffect(() => {
-    fetchQuestions();
-  }, [isTrue]);
+  const fetchContent = () => fetchQuestions();
 
   const initialState = {
     myAnswer: {
@@ -39,14 +39,14 @@ function App() {
       4: { answer: "", isCorrect: false },
     },
     checkAnswers: false,
-    isTrue: false,
+    isHello: false,
     questions: [],
   };
 
   const resetGame = () => (
     setMyAnswer(initialState.myAnswer),
     setQuestions(initialState.questions),
-    setIsTrue(initialState.isTrue),
+    setIsHello(initialState.isHello),
     setCheckAnswers(initialState.checkAnswers)
   );
 
@@ -58,41 +58,44 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <button className="checkAnswers" onClick={() => setIsTrue(!isTrue)}>
-          Fetch content
-        </button>
-        {questions.length > 0 ? (
-          questions.map((question, index) => (
-            <Quiz
-              key={index}
-              index={index}
-              question={question}
-              myAnswer={myAnswer}
-              setMyAnswer={setMyAnswer}
-              checkAnswers={checkAnswers}
-            />
-          ))
+        {isHello ? (
+          <Hello fetchContent={fetchContent} hey={() => setIsHello(false)} />
         ) : (
-          <p>Loading...</p> // Display loading message if no questions are available
+          ""
         )}
+        {questions.length > 0
+          ? questions.map((question, index) => (
+              <Quiz
+                key={index}
+                index={index}
+                question={question}
+                myAnswer={myAnswer}
+                setMyAnswer={setMyAnswer}
+                checkAnswers={checkAnswers}
+              />
+            ))
+          : ""}
         {checkAnswers ? (
           <div className="afterGame">
             <h4>You scored: {countCorrectAnswers}/5 correct answers!</h4>
             <button
               onClick={() => {
                 resetGame();
+                fetchContent();
               }}
             >
               Play again!
             </button>
           </div>
         ) : (
-          <button
-            className="checkAnswers"
-            onClick={() => setCheckAnswers(!checkAnswers)}
-          >
-            Check answers
-          </button>
+          !isHello && (
+            <button
+              className="checkAnswers"
+              onClick={() => setCheckAnswers(!checkAnswers)}
+            >
+              Check answers
+            </button>
+          )
         )}
       </header>
     </div>

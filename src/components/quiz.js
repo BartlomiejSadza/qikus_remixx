@@ -9,7 +9,9 @@ export default function Quiz(props) {
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
 
   useEffect(() => {
-    setShuffledAnswers([correct_answer, ...incorrect_answers].sort(() => Math.random() - 0.5));
+    setShuffledAnswers(
+      [correct_answer, ...incorrect_answers].sort(() => Math.random() - 0.5)
+    );
   }, [correct_answer, incorrect_answers]);
 
   const handleClick = (answer, answerIndex) => {
@@ -19,8 +21,8 @@ export default function Quiz(props) {
       ...prev,
       [index]: {
         answer,
-        isCorrect: answer === correct_answer
-      }
+        isCorrect: answer === correct_answer,
+      },
     }));
     console.log("myAnswer:", myAnswer);
   };
@@ -29,22 +31,34 @@ export default function Quiz(props) {
     <div className="quiks">
       <p style={{ whiteSpace: "wrap" }}>{he.decode(question.question)}</p>
       <ul>
-        {shuffledAnswers.map((answer, answerIndex) => (
-          props.checkAnswers === true ? (<div
-            key={answerIndex}
-            className={`answer ${selectedAnswerIndex === answerIndex ? 
-             (answer === correct_answer ? "answerCorrectMy" :  "answerFalseMy") : (answer === correct_answer ? "answerCorrect" : "")}`}
-          >
-            {answer}
-          </div>) :
-          (<div
-            key={answerIndex}
-            onClick={() => handleClick(answer, answerIndex)}
-            className={`answer ${selectedAnswerIndex === answerIndex ? "answerClicked" : ""}`}
-          >
-            {answer}
-          </div>)
-        ))}
+        {shuffledAnswers.map((answer, answerIndex) =>
+          props.checkAnswers === true ? (
+            <div
+              key={answerIndex}
+              className={`afterAnswer ${
+                selectedAnswerIndex === answerIndex
+                  ? answer === correct_answer
+                    ? "answerCorrect"
+                    : "answerFalse"
+                  : answer === correct_answer
+                  ? "answerCorrect"
+                  : "answerElse"
+              }`}
+            >
+              {answer}
+            </div>
+          ) : (
+            <div
+              key={answerIndex}
+              onClick={() => handleClick(answer, answerIndex)}
+              className={`answer ${
+                selectedAnswerIndex === answerIndex ? "answerClicked" : ""
+              }`}
+            >
+              {he.decode(answer)}
+            </div>
+          )
+        )}
       </ul>
     </div>
   );

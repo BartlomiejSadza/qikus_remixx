@@ -30,7 +30,7 @@ function App() {
     fetchQuestions();
   }, [isTrue]);
 
-  const initialState = { 
+  const initialState = {
     myAnswer: {
       0: { answer: "", isCorrect: false },
       1: { answer: "", isCorrect: false },
@@ -40,7 +40,7 @@ function App() {
     },
     checkAnswers: false,
     isTrue: false,
-    questions: []
+    questions: [],
   };
 
   const resetGame = () => (
@@ -51,34 +51,49 @@ function App() {
   );
 
   // count the number of correct answers
-  const countCorrectAnswers = Object.values(myAnswer).filter(answer => answer.isCorrect).length;
+  const countCorrectAnswers = Object.values(myAnswer).filter(
+    (answer) => answer.isCorrect
+  ).length;
 
   return (
     <div className="App">
       <header className="App-header">
-        <button className="checkAnswers" onClick={() => setIsTrue(!isTrue)}>Fetch content</button>
+        <button className="checkAnswers" onClick={() => setIsTrue(!isTrue)}>
+          Fetch content
+        </button>
         {questions.length > 0 ? (
           questions.map((question, index) => (
             <Quiz
-            key={index}
-            index={index}
-            question={question}
-            myAnswer={myAnswer}
-            setMyAnswer={setMyAnswer}
-            checkAnswers={checkAnswers}
+              key={index}
+              index={index}
+              question={question}
+              myAnswer={myAnswer}
+              setMyAnswer={setMyAnswer}
+              checkAnswers={checkAnswers}
             />
-            ))
-            ) : (
-              <p>Loading...</p> // Display loading message if no questions are available
-              )}
-              {checkAnswers ? (
-                <div className="afterGame">
-                  <h4>You scored: {countCorrectAnswers}/5 correct answers!</h4>
-                  <button onClick={() => {resetGame()}}>Play again!</button>
-                </div>
-              ) : (
-                <button className="checkAnswers" onClick={() => setCheckAnswers(!checkAnswers)}>Check answers</button>
-              )}
+          ))
+        ) : (
+          <p>Loading...</p> // Display loading message if no questions are available
+        )}
+        {checkAnswers ? (
+          <div className="afterGame">
+            <h4>You scored: {countCorrectAnswers}/5 correct answers!</h4>
+            <button
+              onClick={() => {
+                resetGame();
+              }}
+            >
+              Play again!
+            </button>
+          </div>
+        ) : (
+          <button
+            className="checkAnswers"
+            onClick={() => setCheckAnswers(!checkAnswers)}
+          >
+            Check answers
+          </button>
+        )}
       </header>
     </div>
   );

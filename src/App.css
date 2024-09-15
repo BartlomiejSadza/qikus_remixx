@@ -41,7 +41,7 @@
   }
 }
 
-/* Button styling */
+
 .hello button {
   background-color: #4d5b9e;
   color: white;
@@ -134,4 +134,33 @@
 .checkAnswers:active {
   background-color: #939fea;
   box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+.afterGame {
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 30px;
+} 
+.afterGame button {
+  background-color: #4d5b9e;
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 20px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.answerCorrect {
+  background-color: #82d891;
+}
+.answerFalseMy {
+  background-color: #f36656;
+}
+.answerCorrectMy {
+  background-color: #39ea57;
 }

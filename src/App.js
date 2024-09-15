@@ -30,6 +30,26 @@ function App() {
     fetchQuestions();
   }, [isTrue]);
 
+  const initialState = { 
+    myAnswer: {
+      0: { answer: "", isCorrect: false },
+      1: { answer: "", isCorrect: false },
+      2: { answer: "", isCorrect: false },
+      3: { answer: "", isCorrect: false },
+      4: { answer: "", isCorrect: false },
+    },
+    checkAnswers: false,
+    isTrue: false,
+    questions: []
+  };
+
+  const resetGame = () => (
+    setMyAnswer(initialState.myAnswer),
+    setQuestions(initialState.questions),
+    setIsTrue(initialState.isTrue),
+    setCheckAnswers(initialState.checkAnswers)
+  );
+
   // count the number of correct answers
   const countCorrectAnswers = Object.values(myAnswer).filter(answer => answer.isCorrect).length;
 
@@ -45,17 +65,20 @@ function App() {
             question={question}
             myAnswer={myAnswer}
             setMyAnswer={setMyAnswer}
+            checkAnswers={checkAnswers}
             />
             ))
             ) : (
               <p>Loading...</p> // Display loading message if no questions are available
               )}
               {checkAnswers ? (
-                <div>
+                <div className="afterGame">
                   <h4>You scored: {countCorrectAnswers}/5 correct answers!</h4>
+                  <button onClick={() => {resetGame()}}>Play again!</button>
                 </div>
-              ) : null}
-              <button className="checkAnswers" onClick={() => setCheckAnswers(!checkAnswers)}>Check answers</button>
+              ) : (
+                <button className="checkAnswers" onClick={() => setCheckAnswers(!checkAnswers)}>Check answers</button>
+              )}
       </header>
     </div>
   );

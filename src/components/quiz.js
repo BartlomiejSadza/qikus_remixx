@@ -30,13 +30,20 @@ export default function Quiz(props) {
       <p style={{ whiteSpace: "wrap" }}>{he.decode(question.question)}</p>
       <ul>
         {shuffledAnswers.map((answer, answerIndex) => (
-          <div
+          props.checkAnswers === true ? (<div
+            key={answerIndex}
+            className={`answer ${selectedAnswerIndex === answerIndex ? 
+             (answer === correct_answer ? "answerCorrectMy" :  "answerFalseMy") : (answer === correct_answer ? "answerCorrect" : "")}`}
+          >
+            {answer}
+          </div>) :
+          (<div
             key={answerIndex}
             onClick={() => handleClick(answer, answerIndex)}
             className={`answer ${selectedAnswerIndex === answerIndex ? "answerClicked" : ""}`}
           >
             {answer}
-          </div>
+          </div>)
         ))}
       </ul>
     </div>

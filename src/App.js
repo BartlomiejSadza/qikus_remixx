@@ -4,6 +4,7 @@ import Quiz from "./components/quiz";
 
 function App() {
   const [questions, setQuestions] = useState([]);
+  const [checkAnswers, setCheckAnswers] = useState(false);
   const [isTrue, setIsTrue] = useState(false);
   const [myAnswer, setMyAnswer] = useState({
     0: { answer: "", isCorrect: false },
@@ -29,23 +30,32 @@ function App() {
     fetchQuestions();
   }, [isTrue]);
 
+  // count the number of correct answers
+  const countCorrectAnswers = Object.values(myAnswer).filter(answer => answer.isCorrect).length;
+
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={() => setIsTrue(!isTrue)}>Fetch Questions</button>
+        <button className="checkAnswers" onClick={() => setIsTrue(!isTrue)}>Fetch content</button>
         {questions.length > 0 ? (
           questions.map((question, index) => (
             <Quiz
-              key={index}
-              index={index}
-              question={question}
-              myAnswer={myAnswer}
-              setMyAnswer={setMyAnswer}
+            key={index}
+            index={index}
+            question={question}
+            myAnswer={myAnswer}
+            setMyAnswer={setMyAnswer}
             />
-          ))
-        ) : (
-          <p>Loading...</p> // Display loading message if no questions are available
-        )}
+            ))
+            ) : (
+              <p>Loading...</p> // Display loading message if no questions are available
+              )}
+              {checkAnswers ? (
+                <div>
+                  <h4>You scored: {countCorrectAnswers}/5 correct answers!</h4>
+                </div>
+              ) : null}
+              <button className="checkAnswers" onClick={() => setCheckAnswers(!checkAnswers)}>Check answers</button>
       </header>
     </div>
   );

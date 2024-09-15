@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #F5F7FB;
+  background-color: #f5f7fb;
   background-image: url("../public/Quizzical.png"), url("../public/yel.png");
   background-size: 50%, 50%;
   background-repeat: no-repeat, no-repeat;
@@ -43,7 +43,7 @@
 
 /* Button styling */
 .hello button {
-  background-color: #4D5B9E;
+  background-color: #4d5b9e;
   color: white;
   font-weight: 600;
   border: none;
@@ -67,12 +67,11 @@
 .quiks {
   max-width: 700px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
   border-bottom: 1px solid black;
   width: 70vw;
-  margin: 0 auto;
 }
 
 .quiks p {
@@ -88,32 +87,51 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin: 5% auto;
 }
 
 .quiks .answer {
   font-size: 0.8rem;
-  margin: 0 5%;
+  margin-right: 5%;
   border-radius: 15px;
-  border: 1px solid #4D5B9E;
+  border: 1px solid #4d5b9e;
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 .quiks .answerClicked {
-  background-color: #4D5B9E;
+  background-color: #939fea;
   color: white;
   font-weight: bolder;
+  border: none;
 }
 
 .quiks .answer:hover {
-  background-color:  #939fea;
+  background-color: #939fea;
   color: white;
   font-weight: bolder;
 }
-
 
 .quiks .answer:active {
   box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.2);
   border: none;
+}
+.checkAnswers {
+  font-size: 0.8rem;
+  margin: 0 5%;
+  border-radius: 15px;
+  border: 1px solid #4d5b9e;
+  background-color: #4d5b9e;
+  color: white;
+  font-weight: 700;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  margin: 30px auto;
+}
+.checkAnswers:hover {
+  background-color: #6b77c5;
+}
+.checkAnswers:active {
+  background-color: #939fea;
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
